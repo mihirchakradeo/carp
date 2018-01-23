@@ -1,0 +1,119 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script type="text/javascript">
+	function onReady(callback) 
+	{
+    var intervalID = window.setInterval(checkReady, 2000);
+
+    function checkReady() 
+        {
+	        if (document.getElementsByTagName('body')[0] !== undefined) {
+	            window.clearInterval(intervalID);
+	            callback.call(this);
+	        }
+	    }
+	}
+
+	function show(id, value) 
+	{
+	    document.getElementById(id).style.display = value ? 'block' : 'none';
+	}
+
+	onReady(function () 
+	{
+	    show('page', true);
+	    show('loading', false);
+	});
+
+</script>
+
+
+<style type="text/css">
+	#page {
+    display: none;
+}
+#loading {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(0, 0, 0);
+    background-image: url("https://d13yacurqjgara.cloudfront.net/users/31664/screenshots/1327315/plan-b-4-ram_1.gif");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+</style>
+
+</head>
+
+
+
+<body>
+ <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+        <div class="container topnav">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <img src="../static/img/logo.png" height="50px">
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                      <a href="http://127.0.0.1:8000/">Home</a>
+                    </li>
+                    <li>
+                        <a href="http://127.0.0.1:8000/about">About</a>
+                    </li>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+
+
+<div class="container" align="center">
+  <form action="/testlogin" method="POST">
+  <br><br><br>
+  <label for="img"><font size="4">CaRP Image</font></label><br><br>
+  <img src="/static/{{t}}.png"  height="500" width="500" ></image><br/><br/>
+
+
+  <label for="pwd"><font size="4">Username</font></label>
+  <input type="text" class="form-control" id="usr" name="username" placeholder="Username"><br/><br/>
+
+  <label for="pwd"><font size="4">Password</font></label>
+  <input type="password" pattern="[0-9]+" class="form-control" id="pwd" name="password" placeholder="Password"><br/><br/>
+    
+  <button type="submit" class="btn btn-primary btn-lg">Login</button>
+
+</form>
+
+
+
+</div>
+
+
+<div align="left" id="page" class="form-group col-xs-4">
+
+
+	
+
+</div>
+
+<div id="loading"></div>
+<body>
+
+
+<!-- jQuery library -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+   <!-- Latest compiled JavaScript -->
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</html>

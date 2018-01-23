@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+      <!-- Bootstrap -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>CaRP - Captcha as a gRaphical Password</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../static/css/landing-page.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../static/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+<style>
+table, td {
+    border: 3px solid black;
+    width: 900px;
+}
+</style>
+</head>
+<body onload="myFunction()">
+ <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+        <div class="container topnav">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <img src="../static/img/logo.png" height="50px">
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+<br/><br/>
+
+<div class="container">
+<center><h2>Welcome {{username}}</h2></center>  
+<center><h3><i>Select an element</i></h3></center>  
+
+<table class="table table-striped table-inverse" id="myTable">
+</table>
+<br>
+
+<script>
+var generatedfunction = "{{fun}}";
+
+function generateFunction(){
+  var randomNumber = Math.floor(Math.random() * 10) + 1;
+  var generatedfunction = "x+"+str(randomNumber);
+  alert(generatedfunction);
+  document.getElementById("textarea_fn").innerHTML = "x+randomNumber";
+}
+
+function myFunction() {
+    var table = document.getElementById("myTable");
+    var k=0;
+    for(var i=0;i<=5;i++)
+    {
+      var row = table.insertRow(i);
+      
+      for(var j=0;j<=5;j++)
+      {
+          var cell1 = row.insertCell(j)
+
+          //cell1.innerHTML = "<button onclick=\"setText(i,j)\">"+i+","+j+"</button>";
+
+          cell1.innerHTML = i+","+j;
+          //cell1.innerHTML = k;
+          k++;
+      }
+
+    }
+
+    
+    var cells = table.getElementsByTagName("td"); 
+    for (var z = 0; z < cells.length; z++) 
+    { 
+     cells[z].onclick = function(){
+
+      //document.getElementById("textarea").innerHTML = cells[z];
+      tableText(this);
+
+      };
+    }
+ 
+}
+function tableText(tableCell)
+{
+  
+  document.getElementById("textarea").innerHTML = tableCell.innerHTML;
+  document.getElementById("textarea_fn").innerHTML = generatedfunction;
+}
+
+
+
+</script>
+
+<form  action="/createnew" method="POST">
+    <label for="txtarea"><font size="5">Selected Cell:</font></label><br/>
+    <textarea style="font-size:25px" class="form-control" id="textarea" name="textarea_cell">
+    </textarea><br/>
+    <label for="function"><font size="5">Function:</font></label>
+    <br/>
+    <textarea style="font-size:25px" class="form-control" id="textarea_fn" name="textarea_fn">
+    </textarea><br/>  
+  <textarea hidden name="username">{{username}}</textarea>
+  <button type="submit" class = "btn btn-primary btn-lg">Done</button>
+
+</form>
+
+  
+ 
+
+
+
+
+
+</div>
+
+   <!-- jQuery library -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+   <!-- Latest compiled JavaScript -->
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

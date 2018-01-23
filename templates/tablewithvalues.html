@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+      <!-- Bootstrap -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<style>
+table, td {
+    border: 1px solid black;
+    width: 900px;
+}
+</style>
+</head>
+<body onload="myFunction()">
+
+<div class="container">
+  <h2>
+  <label name="username">Welcome, {{username}}</label>
+  </h2>
+</div>
+
+<br/><br/>
+
+<div class="center col-md-4">
+  
+
+<table class="table table-striped table-inverse" id="myTable">
+</table>
+<br>
+
+<script>
+var generatedfunction = "{{fun}}";
+
+function generateFunction(){
+  var randomNumber = Math.floor(Math.random() * 10) + 1;
+  var generatedfunction = "x+"+str(randomNumber);
+  alert(generatedfunction);
+  document.getElementById("textarea_fn").innerHTML = "x+randomNumber";
+}
+
+function myFunction() {
+    var table = document.getElementById("myTable");
+    var k=0;
+    for(var i=0;i<=7;i++)
+    {
+      var row = table.insertRow(i);
+      
+      for(var j=0;j<=7;j++)
+      {
+          var cell1 = row.insertCell(j)
+
+          //cell1.innerHTML = "<button onclick=\"setText(i,j)\">"+i+","+j+"</button>";
+
+          cell1.innerHTML = i+","+j;
+          //cell1.innerHTML = k;
+          k++;
+      }
+
+    }
+
+    
+    var cells = table.getElementsByTagName("td"); 
+    for (var z = 0; z < cells.length; z++) 
+    { 
+     cells[z].onclick = function(){
+
+      //document.getElementById("textarea").innerHTML = cells[z];
+      tableText(this);
+
+      };
+    }
+ 
+}
+function tableText(tableCell)
+{
+  
+  document.getElementById("textarea").innerHTML = tableCell.innerHTML;
+  document.getElementById("textarea_fn").innerHTML = generatedfunction;
+}
+
+
+
+</script>
+<form  action="/createnew" method="POST">
+	<label for="txtarea">Selected Cell:</label><br/>
+	<textarea class="form-control" id="textarea" name="textarea_cell">
+	</textarea><br/>
+	<label for="function">Function:</label> &nbsp;
+  <br/>
+  <br/>
+	<textarea class="form-control" id="textarea_fn" name="textarea_fn">
+	</textarea><br/>  
+  <textarea hidden name="username">{{username}}</textarea>
+  <button type="submit" class = "btn btn-primary btn-lg">Done</button>
+
+</form>
+
+  
+ 
+
+
+
+
+
+</div>
+
+   <!-- jQuery library -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+   <!-- Latest compiled JavaScript -->
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>API</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+</head>
+<body>
+  
+
+ <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+        <div class="container topnav">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <img src="../static/img/logo.png" height="50px">
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="http://127.0.0.1:8000/">Home</a>
+                    </li>
+                    <li>
+                        <a href="http://127.0.0.1:8000/about">About</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+<br><br><br>
+
+<div class="container">
+  <h1 style="font-family: sans-serif;"><strong>API</strong></h1>
+
+  <h1>
+  <ul>
+    <li class="text-info"><b>Usage</b></li>
+      <ol>
+        <li class="text-success">Send HTTP GET request</li>
+        <li class="text-success">Response is a json object containing image and its labels</li>
+        <li class="text-success">Decode the base64 image to get the png</li>
+      </ol> 
+      <hr style="width: 100%; color: black; height: 1px; background-color:black;" />
+    <li class="text-info"><b>Sample JSON Response</b></li>
+      <p class="text-success">
+      {<br>
+      "image" : base64 value,<br>
+      "labels" : "1 2 3 4 ..."<br>
+      }</p>
+      <hr style="width: 100%; color: black; height: 1px; background-color:black;" />
+    <li class="text-info"><b>Sample Python usage to store image temporarily</b></li>
+      <pre><code><font size="6" class="text-success">
+def getImage(img_str, t):
+  with open("path"+t+".png","wb") as fh:
+  fh.write(img_str.decode('base64'))</font></code></pre>
+  </ul>
+  </h1>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>
