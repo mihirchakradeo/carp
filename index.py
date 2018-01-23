@@ -35,19 +35,19 @@ data=data[:max_examples]
 labels=labels[:max_examples]
 '''
 OLD METHOD TO CONNECT TO MYSQL
-app.config['MYSQL_HOST'] = 'ip-172-31-44-206'
-app.config['MYSQL_USER'] = 'root'
-app.config['MSQL_PASSSWORD'] = 'YOURNEWPASSWORD'
-app.config['MYSQL_DB'] = 'concerto'
+app.config['MYSQL_HOST'] = ''
+app.config['MYSQL_USER'] = ''
+app.config['MSQL_PASSSWORD'] = ''
+app.config['MYSQL_DB'] = ''
 mysql = MySQL(app)
 '''
 
 #NEW METHOD TO CONNECT TO MYSQL
 mysql = MySQL()
-app.config['MYSQL_DATABASE_USER'] = 'mohit'
-app.config['MYSQL_DATABASE_PASSWORD'] = 'YOURNEWPASSWORD'
-app.config['MYSQL_DATABASE_DB'] = 'concerto'
-app.config['MYSQL_DATABASE_HOST'] = '52.214.29.235'
+app.config['MYSQL_DATABASE_USER'] = ''
+app.config['MYSQL_DATABASE_PASSWORD'] = ''
+app.config['MYSQL_DATABASE_DB'] = ''
+app.config['MYSQL_DATABASE_HOST'] = ''
 mysql.init_app(app)
 
 
@@ -306,7 +306,7 @@ def sendNewPassword(email,username):
 
 	server = smtplib.SMTP('smtp.gmail.com', 587)
 	server.starttls()
-	server.login("chradeomhr53@gmail.com", "Zxcvbnm1995")
+	server.login("", "")
 	password = str(id_generator())
 	print "INSIDE SENDNEWPASSWORD: ",password
 	#storing new password into table
@@ -318,7 +318,7 @@ def sendNewPassword(email,username):
 	cur.execute("UPDATE default_user_table SET password = '%s' WHERE login='%s'"%(hex_dig, username))
 	conn.commit()
 
-	server.sendmail("chradeomhr53@gmail.com", email, password)
+	server.sendmail("", email, password)
 	server.quit()
 	return
 
